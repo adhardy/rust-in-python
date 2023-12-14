@@ -35,23 +35,14 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-          override: true
       
-      - name: Install dependencies
+      - name: Dev Install
         run: |
-          poetry install --sync
-
-      - name: Build Rust
-        run: |
-          poetry run maturin develop
+          poetry run make install
       
-      - name: Python tests
-        run: |
-          poetry run coverage run -m pytest
-
-      - name: Rust tests
-        run: |
-          poetry run cargo test
+      - name: Run Tests
+        run : |
+          poetry run make test
 
       # coveralls: skip on windows, it is broken: shouldn't be a big deal as we have no platform specific code
       - name: Coveralls  # code coverage
