@@ -6,14 +6,12 @@ install:
 	@poetry install
 	@echo "Building rust extensions..."
 	@poetry run maturin develop
-	@echo "Activating poetry virtualenv..."
-	@poetry shell
 
 test:
 	@echo ">>>>Running python tests..."
-	@poetry run pytest
+	@pytest
 	@echo ">>>>Running rust tests..."
 	@cargo test
 
 build:
-	poetry run maturin build --release
+	@maturin build --release
