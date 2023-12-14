@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "string_sum"
+name = "rusty_poetry"
 version = "0.1.0"
 description = "Rust in python demo"
 authors = ["Adam Hardy <adh167@gmail.com>"]
@@ -11,7 +11,7 @@ pytest = "^7.4.3"
 coverage = "^7.3.3"
 
 [project]
-name = "string_sum"
+name = "rusty_poetry"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
@@ -23,4 +23,4 @@ build-backend = "maturin"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-module-name = "string_sum._string_sum"
+module-name = "rusty_poetry._rusty_poetry"

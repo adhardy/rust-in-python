@@ -3,3 +3,5 @@ def hello_world():
     """
     Prints "Hello, world!" to the console.
     """
+    
+def beta(alpha: float, beta: float) -> float: ...
