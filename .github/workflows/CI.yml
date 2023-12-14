@@ -39,7 +39,7 @@ jobs:
       
       - name: Dev Install
         run: |
-          poetry run make install
+          poetry run make ci-install
       
       - name: Run Tests
         run : |
