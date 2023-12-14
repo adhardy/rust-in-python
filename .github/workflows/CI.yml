@@ -32,9 +32,10 @@ jobs:
           cache: "poetry"
   
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+        run: |
+          rustup toolchain install stable --profile minimal
+      
+      - uses: Swatinem/rust-cache@v2
       
       - name: Dev Install
         run: |
