@@ -9,22 +9,27 @@ fn sum_as_string(a: usize, b: usize) -> PyResult<String> {
 }
 
 #[pyfunction]
-fn hello_world() {
-    println!("Hello World");
-}
-
-#[pyfunction]
 fn beta(alpha: f64, beta: f64) -> PyResult<f64> {
     let beta = Beta::new(alpha, beta);
     Ok(beta.sample())
+}
+
+#[pyfunction]
+fn beta_n(alpha: f64, beta: f64, n: usize) -> PyResult<Vec<f64>> {
+    let beta = Beta::new(alpha, beta);
+    let mut samples = Vec::with_capacity(n);
+    for _ in 0..n {
+        samples.push(beta.sample());
+    }
+    Ok(samples)
 }
 
 /// A Python module implemented in Rust.
 #[pymodule]
 fn _rusty_poetry(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(sum_as_string, m)?)?;
-    m.add_function(wrap_pyfunction!(hello_world, m)?)?;
     m.add_function(wrap_pyfunction!(beta, m)?)?;
+    m.add_function(wrap_pyfunction!(beta_n, m)?)?;
     Ok(())
 }
 
@@ -40,5 +45,10 @@ mod tests {
     #[test]
     fn test_beta() {
         assert!(beta(1.0, 1.0).unwrap() >= 0.0);
+    }
+
+    #[test]
+    fn test_beta_n() {
+        assert_eq!(beta_n(1.0, 1.0, 10).unwrap().len(), 10);
     }
 }
