@@ -18,3 +18,13 @@ fn _string_sum(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(hello_world, m)?)?;
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_sum_as_string() {
+        assert_eq!(sum_as_string(2, 2).unwrap(), "4");
+    }
+}
