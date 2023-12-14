@@ -11,7 +11,7 @@ A demo project showing rust code in a python project with the Poetry package man
 ## Installation
 
 ```bash
-make install
+poetry run make install
 ```
 
 You will need to run `maturin develop` again if you change the rust code.

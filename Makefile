@@ -5,7 +5,7 @@ install:
 	@echo "Installing poetry dependencies..."
 	@poetry install
 	@echo "Building rust extensions..."
-	@poetry run maturin develop
+	@maturin develop
 
 test:
 	@echo ">>>>Running python tests..."
