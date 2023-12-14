@@ -8,10 +8,11 @@ install:
 	@maturin develop
 
 test:
-	@echo ">>>>Running python tests..."
-	@pytest
 	@echo ">>>>Running rust tests..."
 	@cargo test
+	@echo ">>>>Running python tests..."
+	@pytest
+
 
 build:
 	@maturin build --release
