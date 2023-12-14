@@ -45,7 +45,7 @@ jobs:
 
       - name: Build Rust
         run: |
-          poetry run maturin build --release --no-sdist --manylinux off --strip
+          poetry run maturin develop
       
       - name: Python tests
         run: |
