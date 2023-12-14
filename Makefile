@@ -13,7 +13,5 @@ test:
 	@echo ">>>>Running rust tests..."
 	@cargo test
 
-
-
 build:
 	@maturin build --release
