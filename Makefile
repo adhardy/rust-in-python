@@ -1,17 +1,9 @@
-.PHONY: install test build dev develop ci-install
+.PHONY: install test build dev develop ci-install poetry-install poetry-no-jupyter
 .DEFAULT_GOAL := install
 
-install:
-	@echo "Installing poetry dependencies..."
-	@poetry install
-	@echo "Building rust extensions..."
-	@maturin develop
+install: poetry-install develop 
 
-ci-install:
-	@echo "Installing poetry dependencies..."
-	@poetry install --without jupyter --sync
-	@echo "Building rust extensions..."
-	@maturin develop
+ci-install: poetry-no-jupyter develop
 
 test:
 	@echo ">>>>Running python tests..."
@@ -19,10 +11,19 @@ test:
 	@echo ">>>>Running rust tests..."
 	@cargo test
 
-build:
+build: install
 	@maturin build --release
+
+develop:
+	@echo "Building rust extensions in develop mode..."
+	@maturin develop
 
 dev: develop
 
-develop:
-	@maturin develop
+poetry-install:
+	@echo "Installing poetry dependencies..."
+	@poetry install --sync
+
+poetry-no-jupyter:
+	@echo "Installing poetry dependencies without jupyter..."
+	@poetry install --without jupyter --sync

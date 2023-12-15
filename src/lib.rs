@@ -1,6 +1,7 @@
 use pyo3::prelude::*;
 use compute::distributions::Beta;
 use compute::distributions::Distribution;
+use compute::distributions::Distribution1D;
 
 /// Formats the sum of two numbers as string.
 #[pyfunction]
@@ -17,11 +18,10 @@ fn beta(alpha: f64, beta: f64) -> PyResult<f64> {
 #[pyfunction]
 fn beta_n(alpha: f64, beta: f64, n: usize) -> PyResult<Vec<f64>> {
     let beta = Beta::new(alpha, beta);
-    let mut samples = Vec::with_capacity(n);
-    for _ in 0..n {
-        samples.push(beta.sample());
-    }
-    Ok(samples)
+    let data = beta.sample_n(n);
+    // cast from Vector to Vec<f64> so we can return it to Python
+    let data: Vec<f64> = data.iter().map(|&x| x).collect();
+    Ok(data)
 }
 
 /// A Python module implemented in Rust.
