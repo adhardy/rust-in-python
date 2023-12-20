@@ -40,7 +40,7 @@ Rust modules are defined in the `src` directory. The `Cargo.toml` file defines t
 
 Python modules are in the `rusty_poetry` directory. The `pyproject.toml` file defines the python project and dependencies.
 
-`string_sum/__init__.py` imports the rust code into the python module.
+`rusty_poetry/__init__.py` imports the rust code into the python module.
 
 ## Useful Links
 
